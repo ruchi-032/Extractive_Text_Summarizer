@@ -94,7 +94,10 @@ class window:
 		self.stop_words = stopwords.words('english')	
 
 	def copytext(self):
-		pyperclip.copy('Test')
+		if self.output_text.get("1.0",END) == "" or self.output_text.get("1.0",END).isspace():
+			messagebox.showerror("Error", "Empty text box")
+			return 0
+		pyperclip.copy(self.output_text.get("1.0",END))
 		print("[+] Text copied")
 
 	def wiki(self):
